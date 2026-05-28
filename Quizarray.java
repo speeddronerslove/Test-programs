@@ -14,15 +14,29 @@ public class Quizarray {
             {"A. 1998 , B. 2021 , C. 1233 , D. 2023"}
          };
 
-         String [] answers = {
-            "C","C","B"
+         char [] answers = {
+            'C','C','B'
          };
 
          int score = 0 ;
 
          for (int i=0 ; i < Questions.length ; i++ ){
-            System.out.println("/n"+Questions);
+            System.out.println("/n"+Questions[i]);
+            for (int j=0; j<options[i].length; j++){
+                System.out.println(options[i][j]);
+            }
+         System.out.println("Enter Your Answers = ");
+         char userans = sc.next().toUpperCase().charAt(0);
+         if (userans == answers[i]){
+            System.out.println("Correct Answer");
+            score++;
+         }
+         else {
+            System.out.println("Wrong answer");
+         }
 
          }
+         System.out.println("Quiz Over .... /n Your score = "+score);
+         sc.close();
     }
 }
