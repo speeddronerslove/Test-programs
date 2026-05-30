@@ -21,7 +21,7 @@ public class Quizarray {
          int score = 0 ;
 
          for (int i=0 ; i < Questions.length ; i++ ){
-            System.out.println("/n"+Questions[i]);
+            System.out.println(Questions[i]);
             for (int j=0; j<options[i].length; j++){
                 System.out.println(options[i][j]);
             }
