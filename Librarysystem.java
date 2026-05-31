@@ -35,14 +35,15 @@ public class Librarysystem {
             switch (choice) {
                 case 1:{
                      System.out.println("Enter the Book title = ");
-                     String title = sc.nextLine();
+                     String name = sc.nextLine();
                      System.out.println("Enter the Author name = ");
                      String author = sc.nextLine();
-                     books.add(new Book(title, author));
+                     books.add(new Book(name, author));
                      System.out.println("Book added successfully");
+                     break;
             }
                case 2 :{
-                     System.out.println("Enter the Book = ");
+                     System.out.println("Enter the Book borrow = ");
                      String borrowtitle = sc.nextLine();
                      boolean foundborrow = false ;
 
@@ -62,7 +63,72 @@ public class Librarysystem {
                             System.out.println("Book Not found");
                         }
                      }
+                     break;
                }
+              case 3 : {
+                     System.out.println("Enter the Book to return");
+                     String returntitle = sc.nextLine();
+                     boolean foundreturn = false ;
+
+                     for (Book b : books){
+                         if(b.title.equalsIgnoreCase(returntitle)){
+
+                            foundreturn = true ;
+
+                            if (!isavailable){
+
+                                isavailable = true ;
+                                  System.out.println("Book Returned Successfully");
+                            } else {
+                                System.out.println("Book was not borrowed ");
+                            }
+                         }
+                         if(!foundreturn){
+                            System.out.println("The book is not found ");
+                         }
+
+                     }
+                     break;
+              }
+               case 4 : {
+                    System.out.println("Enter the Name of the book = ");
+                    String searchtitle = sc.nextLine();
+                    boolean foundsearch = false ;
+
+                    for ( Book b = books){
+                        if(b.title.equalsIgnoreCase(searchtitle)){
+
+                            foundsearch = true ;
+
+                            System.out.println("The Requested book "+searchtitle" is found with author "+author);
+                        } 
+                        else{
+                            System.out.println("The Book is not found");
+                        }
+                    }
+                    break;
+               }
+               case 5:{
+                     if(books.isEmpty()){
+                        System.out.println("The Library is Empty ");
+                     }
+                     else {
+                        for (Book b = books){
+                            System.out.println(" Title "+b.title);
+                            System.out.println(" Author "+b.author);
+                            System.out.println(" Availability "+b.isavailable);
+                        }
+                     }
+                     break;
+               }
+              case 6:{
+                   System.out.println("Exited Thank You <3 ");
+                   sc.close();
+                   return;
+              }
+              default : {
+                System.out.println ("Invalid Choice");
+              }
         }
         
     }
