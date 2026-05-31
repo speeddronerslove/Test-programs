@@ -2,12 +2,12 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
  class Book {
-    String name ;
+    String title ;
     String author ;
     boolean isavailable;
 
-    Book (String name , String author) {
-        this.name = name ;
+    Book (String title , String author) {
+        this.title = title ;
         this.author = author;
         this.isavailable = true;
     }
@@ -31,14 +31,15 @@ public class Librarysystem {
             System.out.println("6. Exit");
 
             int choice = sc.nextInt();
+            sc.nextLine();
 
             switch (choice) {
                 case 1:{
                      System.out.println("Enter the Book title = ");
-                     String name = sc.nextLine();
+                     String title = sc.nextLine();
                      System.out.println("Enter the Author name = ");
                      String author = sc.nextLine();
-                     books.add(new Book(name, author));
+                     books.add(new Book(title, author));
                      System.out.println("Book added successfully");
                      break;
             }
@@ -53,16 +54,17 @@ public class Librarysystem {
                             foundborrow = true ;
 
                             if(b.isavailable){
-                                isavailable = false ;
+                                b.isavailable = false ;
                                 System.out.println("Book Borrowed Succesfully");
                             } else {
                                 System.out.println("Book already Borrowed");
                             }
                         }
-                        if(!foundborrow){
+                        
+                     }
+                     if(!foundborrow){
                             System.out.println("Book Not found");
                         }
-                     }
                      break;
                }
               case 3 : {
@@ -75,9 +77,9 @@ public class Librarysystem {
 
                             foundreturn = true ;
 
-                            if (!isavailable){
+                            if (!b.isavailable){
 
-                                isavailable = true ;
+                                b.isavailable = true ;
                                   System.out.println("Book Returned Successfully");
                             } else {
                                 System.out.println("Book was not borrowed ");
@@ -95,17 +97,19 @@ public class Librarysystem {
                     String searchtitle = sc.nextLine();
                     boolean foundsearch = false ;
 
-                    for ( Book b = books){
+                    for ( Book b : books) {
                         if(b.title.equalsIgnoreCase(searchtitle)){
 
                             foundsearch = true ;
 
-                            System.out.println("The Requested book "+searchtitle" is found with author "+author);
+                            System.out.println("The Requested book found is = "+searchtitle);
+                            System.out.println("Authored By = " + b.author);
+
                         } 
-                        else{
-                            System.out.println("The Book is not found");
+                        if(!foundsearch){
+                            System.out.println("Book not found");
                         }
-                    }
+                    };
                     break;
                }
                case 5:{
@@ -113,7 +117,7 @@ public class Librarysystem {
                         System.out.println("The Library is Empty ");
                      }
                      else {
-                        for (Book b = books){
+                        for (Book b : books){
                             System.out.println(" Title "+b.title);
                             System.out.println(" Author "+b.author);
                             System.out.println(" Availability "+b.isavailable);
@@ -132,5 +136,6 @@ public class Librarysystem {
         }
         
     }
+ } 
     
 }
