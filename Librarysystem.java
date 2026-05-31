@@ -33,7 +33,7 @@ public class Librarysystem {
             int choice = sc.nextInt();
 
             switch (choice) {
-                case 1:
+                case 1:{
                      System.out.println("Enter the Book title = ");
                      String title = sc.nextLine();
                      System.out.println("Enter the Author name = ");
@@ -41,6 +41,28 @@ public class Librarysystem {
                      books.add(new Book(title, author));
                      System.out.println("Book added successfully");
             }
+               case 2 :{
+                     System.out.println("Enter the Book = ");
+                     String borrowtitle = sc.nextLine();
+                     boolean foundborrow = false ;
+
+                     for ( Book b : books ) {
+                        if (b.title.equalsIgnoreCase(borrowtitle)){
+
+                            foundborrow = true ;
+
+                            if(b.isavailable){
+                                isavailable = false ;
+                                System.out.println("Book Borrowed Succesfully");
+                            } else {
+                                System.out.println("Book already Borrowed");
+                            }
+                        }
+                        if(!foundborrow){
+                            System.out.println("Book Not found");
+                        }
+                     }
+               }
         }
         
     }
